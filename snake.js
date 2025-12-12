@@ -1,7 +1,7 @@
 const canvas = document.getElementById("gameCanvas");
 const ctx = canvas.getContext("2d");
 
-const box = 20; // 크기
+const box = 20; // 한 칸 크기
 let snake = [{ x: 9 * box, y: 9 * box }];
 let direction = null;
 
@@ -11,7 +11,7 @@ let food = {
     y: Math.floor(Math.random() * 20) * box
 };
 
-// 방향 설정
+// PC용 키보드 이벤트
 document.addEventListener("keydown", (event) => {
     if (event.key === "ArrowUp" && direction !== "DOWN") direction = "UP";
     if (event.key === "ArrowDown" && direction !== "UP") direction = "DOWN";
@@ -19,8 +19,17 @@ document.addEventListener("keydown", (event) => {
     if (event.key === "ArrowRight" && direction !== "LEFT") direction = "RIGHT";
 });
 
+// 모바일 버튼용 방향 함수
+function setDirection(dir) {
+    if (dir === "UP" && direction !== "DOWN") direction = "UP";
+    else if (dir === "DOWN" && direction !== "UP") direction = "DOWN";
+    else if (dir === "LEFT" && direction !== "RIGHT") direction = "LEFT";
+    else if (dir === "RIGHT" && direction !== "LEFT") direction = "RIGHT";
+}
+
 // 게임 루프
 function draw() {
+    // 배경
     ctx.fillStyle = "white";
     ctx.fillRect(0, 0, 400, 400);
 
@@ -28,15 +37,12 @@ function draw() {
     ctx.fillStyle = "red";
     ctx.fillRect(food.x, food.y, box, box);
 
-    // 뱀
+    // 뱀 그리기
     ctx.fillStyle = "lime";
-    snake.forEach((part, index) => {
-        ctx.fillRect(part.x, part.y, box, box);
-    });
+    snake.forEach(part => ctx.fillRect(part.x, part.y, box, box));
 
-    // 뱀 머리 이동
+    // 머리 이동
     let head = { x: snake[0].x, y: snake[0].y };
-
     if (direction === "UP") head.y -= box;
     if (direction === "DOWN") head.y += box;
     if (direction === "LEFT") head.x -= box;
@@ -54,7 +60,7 @@ function draw() {
 
     snake.unshift(head);
 
-    // 벽충돌 or 자기 몸 충돌 → 게임 리셋
+    // 충돌 검사 (벽 또는 자기 자신)
     if (
         head.x < 0 || head.x >= 400 ||
         head.y < 0 || head.y >= 400 ||
@@ -65,13 +71,6 @@ function draw() {
     }
 }
 
+// 100ms 간격으로 게임 루프 실행
 setInterval(draw, 100);
-
-function setDirection(dir) {
-    if (dir === "UP" && dy === 0) { dx = 0; dy = -1; }
-    else if (dir === "DOWN" && dy === 0) { dx = 0; dy = 1; }
-    else if (dir === "LEFT" && dx === 0) { dx = -1; dy = 0; }
-    else if (dir === "RIGHT" && dx === 0) { dx = 1; dy = 0; }
-}
-
 
