@@ -1,3 +1,49 @@
-<h2>Snake Game</h2>
-<canvas id="game" width="400" height="400" style="background:#111; display:block; margin:auto;"></canvas>
-<script src="snake.js"></script>
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8" />
+    <title>My AI + Snake Game</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f2f2f2;
+            padding: 20px;
+            text-align: center;
+        }
+
+        /* 게임 화면 스타일 */
+        #game-box {
+            margin: 20px auto;
+            width: 400px;
+            height: 400px;
+            background: #000;      /* 🔥 게임 화면을 검정 네모로 */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 8px;
+        }
+
+        #game {
+            background: #000;      /* 🔥 캔버스 내부도 검정 */
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>My AI Website + Snake Game</h1>
+
+    <!-- 🔥 스네이크 게임 화면 -->
+    <div id="game-box">
+        <canvas id="game" width="400" height="400"></canvas>
+    </div>
+
+    <!-- 🔥 스네이크 게임 코드 연결 -->
+    <script src="snake.js"></script>
+
+    <!-- 🔥 기존 AI 스크립트 연결 -->
+    <script src="script.js"></script>
+
+</body>
+</html>
