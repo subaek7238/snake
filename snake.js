@@ -67,3 +67,10 @@ function draw() {
 
 setInterval(draw, 100);
 
+function setDirection(dir) {
+    if (dir === "UP" && dy === 0) { dx = 0; dy = -1; }
+    else if (dir === "DOWN" && dy === 0) { dx = 0; dy = 1; }
+    else if (dir === "LEFT" && dx === 0) { dx = -1; dy = 0; }
+    else if (dir === "RIGHT" && dx === 0) { dx = 1; dy = 0; }
+}
+
