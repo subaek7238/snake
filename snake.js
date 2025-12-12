@@ -5,13 +5,13 @@ const box = 20; // 한 칸 크기
 let snake = [{ x: 9 * box, y: 9 * box }];
 let direction = null;
 
-// 랜덤 음식 위치
+// 음식 위치
 let food = {
     x: Math.floor(Math.random() * 20) * box,
     y: Math.floor(Math.random() * 20) * box
 };
 
-// PC용 키보드 이벤트
+// PC 키보드 이벤트
 document.addEventListener("keydown", (event) => {
     if (event.key === "ArrowUp" && direction !== "DOWN") direction = "UP";
     if (event.key === "ArrowDown" && direction !== "UP") direction = "DOWN";
@@ -19,7 +19,7 @@ document.addEventListener("keydown", (event) => {
     if (event.key === "ArrowRight" && direction !== "LEFT") direction = "RIGHT";
 });
 
-// 모바일 버튼용 방향 함수
+// 모바일 터치 버튼용
 function setDirection(dir) {
     if (dir === "UP" && direction !== "DOWN") direction = "UP";
     else if (dir === "DOWN" && direction !== "UP") direction = "DOWN";
@@ -29,16 +29,16 @@ function setDirection(dir) {
 
 // 게임 루프
 function draw() {
-    // 캔버스 배경 채우기 (테두리 안쪽만)
-    ctx.clearRect(0, 0, canvas.width, canvas.height); // 기존 내용 초기화
+    // 배경 초기화
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.fillStyle = "white";
-    ctx.fillRect(0, 0, canvas.width, canvas.height); // 배경 흰색
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
 
     // 음식
     ctx.fillStyle = "red";
     ctx.fillRect(food.x, food.y, box, box);
 
-    // 뱀 그리기
+    // 뱀
     ctx.fillStyle = "lime";
     snake.forEach(part => ctx.fillRect(part.x, part.y, box, box));
 
@@ -61,7 +61,7 @@ function draw() {
 
     snake.unshift(head);
 
-    // 충돌 검사 (벽 또는 자기 자신)
+    // 충돌 검사
     if (
         head.x < 0 || head.x >= canvas.width ||
         head.y < 0 || head.y >= canvas.height ||
@@ -72,6 +72,6 @@ function draw() {
     }
 }
 
-// 100ms 간격으로 게임 루프 실행
+// 게임 루프 실행
 setInterval(draw, 100);
 
