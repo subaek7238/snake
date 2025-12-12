@@ -29,9 +29,10 @@ function setDirection(dir) {
 
 // 게임 루프
 function draw() {
-    // 배경
+    // 캔버스 배경 채우기 (테두리 안쪽만)
+    ctx.clearRect(0, 0, canvas.width, canvas.height); // 기존 내용 초기화
     ctx.fillStyle = "white";
-    ctx.fillRect(0, 0, 400, 400);
+    ctx.fillRect(0, 0, canvas.width, canvas.height); // 배경 흰색
 
     // 음식
     ctx.fillStyle = "red";
@@ -62,8 +63,8 @@ function draw() {
 
     // 충돌 검사 (벽 또는 자기 자신)
     if (
-        head.x < 0 || head.x >= 400 ||
-        head.y < 0 || head.y >= 400 ||
+        head.x < 0 || head.x >= canvas.width ||
+        head.y < 0 || head.y >= canvas.height ||
         snake.slice(1).some(p => p.x === head.x && p.y === head.y)
     ) {
         snake = [{ x: 9 * box, y: 9 * box }];
