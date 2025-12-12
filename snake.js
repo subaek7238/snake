@@ -21,7 +21,7 @@ document.addEventListener("keydown", (event) => {
 
 // 게임 루프
 function draw() {
-    ctx.fillStyle = "black";
+    ctx.fillStyle = "white";
     ctx.fillRect(0, 0, 400, 400);
 
     // 음식
@@ -66,3 +66,4 @@ function draw() {
 }
 
 setInterval(draw, 100);
+
