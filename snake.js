@@ -73,7 +73,8 @@ function draw() {
 }
 
 // 게임 루프 실행
-setInterval(draw, 400);
+setInterval(draw, 300);
+
 
 
 
