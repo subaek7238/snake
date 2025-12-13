@@ -40,8 +40,17 @@ function draw() {
 
     // 뱀
     ctx.fillStyle = "lime";
-    snake.forEach((part, index) => {
-        ctx.fillRect(part.x, part.y, box, box);
+   snake.forEach((part, index) => {
+    let drawX = part.x;
+    let drawY = part.y;
+
+    // 머리만 부드럽게 이동
+    if (index === 0 && direction) {
+        drawX = prevHead.x + (part.x - prevHead.x) * lerp;
+        drawY = prevHead.y + (part.y - prevHead.y) * lerp;
+    }
+
+    ctx.fillRect(drawX, drawY, box, box);
 
     // 👀 머리에 눈 그리기
     if (index === 0) {
@@ -110,6 +119,7 @@ if (
 
 // 게임 루프 실행
 setInterval(draw, 150);
+
 
 
 
