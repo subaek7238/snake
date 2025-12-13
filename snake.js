@@ -82,8 +82,7 @@ function draw() {
     if (direction === "RIGHT") head.x += box;
 
     // 음식 먹기
-if (head.x === food.x && head.y === food.y) {
-    food = {
+    if (head.x === food.x && head.y === food.y) {
         food = {
             x: Math.floor(Math.random() * 20) * box,
             y: Math.floor(Math.random() * 20) * box
@@ -106,7 +105,8 @@ if (head.x === food.x && head.y === food.y) {
 }
 
 // 게임 루프 실행
-setInterval(draw, 150);
+setInterval(draw, 100);
+
 
 
 
