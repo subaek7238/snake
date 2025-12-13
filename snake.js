@@ -81,15 +81,19 @@ function draw() {
     if (direction === "LEFT") head.x -= box;
     if (direction === "RIGHT") head.x += box;
 
-    // 음식 먹기
-    if (head.x === food.x && head.y === food.y) {
-        food = {
-            x: Math.floor(Math.random() * 20) * box,
-            y: Math.floor(Math.random() * 20) * box
-        };
-    } else {
-        snake.pop();
-    }
+    // 음식 먹기 (부드러운 판정)
+if (
+    Math.abs(head.x - food.x) < box / 2 &&
+    Math.abs(head.y - food.y) < box / 2
+) {
+    food = {
+        x: Math.floor(Math.random() * 20) * box,
+        y: Math.floor(Math.random() * 20) * box
+    };
+} else {
+    snake.pop();
+}
+
 
     snake.unshift(head);
 
@@ -106,6 +110,7 @@ function draw() {
 
 // 게임 루프 실행
 setInterval(draw, 150);
+
 
 
 
