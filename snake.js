@@ -105,7 +105,8 @@ function draw() {
 }
 
 // 게임 루프 실행
-setInterval(draw, 100);
+setInterval(draw, 150);
+
 
 
 
