@@ -1,14 +1,14 @@
 const canvas = document.getElementById("gameCanvas");
 const ctx = canvas.getContext("2d");
 
-const box = 10; // 한 칸 크기
+const box = 20; // 한 칸 크기
 let snake = [{ x: 9 * box, y: 9 * box }];
 let direction = null;
 
 // 음식 위치
 let food = {
-    x: Math.floor(Math.random() * 40) * box,
-    y: Math.floor(Math.random() * 40) * box
+    x: Math.floor(Math.random() * 20) * box,
+    y: Math.floor(Math.random() * 20) * box
 };
 
 // PC 키보드 이벤트
@@ -110,6 +110,7 @@ if (
 
 // 게임 루프 실행
 setInterval(draw, 150);
+
 
 
 
