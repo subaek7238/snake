@@ -1,7 +1,7 @@
 const canvas = document.getElementById("gameCanvas");
 const ctx = canvas.getContext("2d");
 
-const box = 20; // 한 칸 크기
+const box = 40; // 한 칸 크기
 let snake = [{ x: 9 * box, y: 9 * box }];
 let direction = null;
 
@@ -110,6 +110,7 @@ if (
 
 // 게임 루프 실행
 setInterval(draw, 150);
+
 
 
 
