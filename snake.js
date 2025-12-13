@@ -1,14 +1,14 @@
 const canvas = document.getElementById("gameCanvas");
 const ctx = canvas.getContext("2d");
 
-const box = 20; // 한 칸 크기
+const box = 10; // 한 칸 크기
 let snake = [{ x: 9 * box, y: 9 * box }];
 let direction = null;
 
 // 음식 위치
 let food = {
-    x: Math.floor(Math.random() * 20) * box,
-    y: Math.floor(Math.random() * 20) * box
+    x: Math.floor(Math.random() * 40) * box,
+    y: Math.floor(Math.random() * 40) * box
 };
 
 // PC 키보드 이벤트
@@ -40,17 +40,8 @@ function draw() {
 
     // 뱀
     ctx.fillStyle = "lime";
-   snake.forEach((part, index) => {
-    let drawX = part.x;
-    let drawY = part.y;
-
-    // 머리만 부드럽게 이동
-    if (index === 0 && direction) {
-        drawX = prevHead.x + (part.x - prevHead.x) * lerp;
-        drawY = prevHead.y + (part.y - prevHead.y) * lerp;
-    }
-
-    ctx.fillRect(drawX, drawY, box, box);
+  snake.forEach((part, index) => {
+    ctx.fillRect(part.x, part.y, box, box);
 
     // 👀 머리에 눈 그리기
     if (index === 0) {
@@ -118,12 +109,7 @@ if (
 }
 
 // 게임 루프 실행
-setInterval(() => {
-    lerp += 0.2; // 숫자 작을수록 더 부드러움
-    if (lerp > 1) lerp = 1;
-    draw();
-}, 30);
-
+setInterval(draw, 150);
 
 
 
