@@ -1,7 +1,7 @@
 const canvas = document.getElementById("gameCanvas");
 const ctx = canvas.getContext("2d");
 
-const box = 40; // 한 칸 크기
+const box = 20; // 한 칸 크기
 let snake = [{ x: 9 * box, y: 9 * box }];
 let direction = null;
 
@@ -39,8 +39,9 @@ function draw() {
     ctx.fillRect(food.x, food.y, box, box);
 
     // 뱀
-    ctx.fillStyle = "lime";
-  snake.forEach((part, index) => {
+    // 뱀 몸
+ctx.fillStyle = "lime";
+snake.forEach((part, index) => {
     ctx.fillRect(part.x, part.y, box, box);
 
     // 👀 머리에 눈 그리기
@@ -81,7 +82,7 @@ function draw() {
     if (direction === "LEFT") head.x -= box;
     if (direction === "RIGHT") head.x += box;
 
-    // 음식 먹기 (부드러운 판정)
+    // 음식 먹기
 if (
     Math.abs(head.x - food.x) < box / 2 &&
     Math.abs(head.y - food.y) < box / 2
@@ -93,7 +94,6 @@ if (
 } else {
     snake.pop();
 }
-
 
     snake.unshift(head);
 
@@ -110,9 +110,6 @@ if (
 
 // 게임 루프 실행
 setInterval(draw, 150);
-
-
-
 
 
 
