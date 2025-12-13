@@ -118,7 +118,13 @@ if (
 }
 
 // 게임 루프 실행
-setInterval(draw, 150);
+setInterval(() => {
+    lerp += 0.2; // 숫자 작을수록 더 부드러움
+    if (lerp > 1) lerp = 1;
+    draw();
+}, 30);
+
+
 
 
 
