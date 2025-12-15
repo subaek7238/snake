@@ -2,7 +2,7 @@ const canvas = document.getElementById("gameCanvas");
 const ctx = canvas.getContext("2d");
 
 const box = 20; // 한 칸 크기
-let snake = [{ x: 20 * box, y: 20 * box }];
+let snake = [{ x: 9 * box, y: 9 * box }];
 let direction = null;
 
 // 음식 위치
@@ -109,7 +109,8 @@ if (
 }
 
 // 게임 루프 실행
-setInterval(draw, 30);
+setInterval(draw, 150);
+
 
 
 
