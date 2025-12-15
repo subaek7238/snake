@@ -46,7 +46,7 @@ snake.forEach((part, index) => {
 
     // 👀 머리에 눈 그리기
     if (index === 0) {
-        ctx.fillStyle = "white";
+        ctx.fillStyle = "black";
 
         let eyeSize = 4;
         let offset = 5;
@@ -110,6 +110,7 @@ if (
 
 // 게임 루프 실행
 setInterval(draw, 150);
+
 
 
 
