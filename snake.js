@@ -109,7 +109,8 @@ if (
 }
 
 // 게임 루프 실행
-setInterval(draw, 150);
+setInterval(draw, 200);
+
 
 
 
