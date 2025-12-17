@@ -11,12 +11,21 @@ let food = {
     y: Math.floor(Math.random() * 20) * box
 };
 
-// PC 키보드 이벤트
+// PC 키보드 이벤트 (⬆⬇⬅➡ + WASD)
 document.addEventListener("keydown", (event) => {
-    if (event.key === "ArrowUp" && direction !== "DOWN") direction = "UP";
-    if (event.key === "ArrowDown" && direction !== "UP") direction = "DOWN";
-    if (event.key === "ArrowLeft" && direction !== "RIGHT") direction = "LEFT";
-    if (event.key === "ArrowRight" && direction !== "LEFT") direction = "RIGHT";
+    const key = event.key.toLowerCase();
+
+    if ((key === "arrowup" || key === "w") && direction !== "DOWN")
+        direction = "UP";
+
+    if ((key === "arrowdown" || key === "s") && direction !== "UP")
+        direction = "DOWN";
+
+    if ((key === "arrowleft" || key === "a") && direction !== "RIGHT")
+        direction = "LEFT";
+
+    if ((key === "arrowright" || key === "d") && direction !== "LEFT")
+        direction = "RIGHT";
 });
 
 // 모바일 터치 버튼용
@@ -39,41 +48,40 @@ function draw() {
     ctx.fillRect(food.x, food.y, box, box);
 
     // 뱀
-    // 뱀 몸
-ctx.fillStyle = "lime";
-snake.forEach((part, index) => {
-    ctx.fillRect(part.x, part.y, box, box);
+    ctx.fillStyle = "lime";
+    snake.forEach((part, index) => {
+        ctx.fillRect(part.x, part.y, box, box);
 
-    // 👀 머리에 눈 그리기
-    if (index === 0) {
-        ctx.fillStyle = "black";
+        // 👀 머리에 눈
+        if (index === 0) {
+            ctx.fillStyle = "black";
 
-        let eyeSize = 4;
-        let offset = 5;
+            let eyeSize = 4;
+            let offset = 5;
 
-        let eye1 = { x: part.x, y: part.y };
-        let eye2 = { x: part.x, y: part.y };
+            let eye1 = { x: part.x, y: part.y };
+            let eye2 = { x: part.x, y: part.y };
 
-        if (direction === "RIGHT") {
-            eye1.x += box - offset; eye1.y += offset;
-            eye2.x += box - offset; eye2.y += box - offset;
-        } else if (direction === "LEFT") {
-            eye1.x += offset - eyeSize; eye1.y += offset;
-            eye2.x += offset - eyeSize; eye2.y += box - offset;
-        } else if (direction === "UP") {
-            eye1.x += offset; eye1.y += offset - eyeSize;
-            eye2.x += box - offset; eye2.y += offset - eyeSize;
-        } else { // DOWN or 시작 상태
-            eye1.x += offset; eye1.y += box - offset;
-            eye2.x += box - offset; eye2.y += box - offset;
+            if (direction === "RIGHT") {
+                eye1.x += box - offset; eye1.y += offset;
+                eye2.x += box - offset; eye2.y += box - offset;
+            } else if (direction === "LEFT") {
+                eye1.x += offset - eyeSize; eye1.y += offset;
+                eye2.x += offset - eyeSize; eye2.y += box - offset;
+            } else if (direction === "UP") {
+                eye1.x += offset; eye1.y += offset - eyeSize;
+                eye2.x += box - offset; eye2.y += offset - eyeSize;
+            } else if (direction === "DOWN") {
+                eye1.x += offset; eye1.y += box - offset;
+                eye2.x += box - offset; eye2.y += box - offset;
+            }
+
+            ctx.fillRect(eye1.x, eye1.y, eyeSize, eyeSize);
+            ctx.fillRect(eye2.x, eye2.y, eyeSize, eyeSize);
+
+            ctx.fillStyle = "lime";
         }
-
-        ctx.fillRect(eye1.x, eye1.y, eyeSize, eyeSize);
-        ctx.fillRect(eye2.x, eye2.y, eyeSize, eyeSize);
-
-        ctx.fillStyle = "lime"; // 다시 몸 색으로
-    }
-});
+    });
 
     // 머리 이동
     let head = { x: snake[0].x, y: snake[0].y };
@@ -83,17 +91,17 @@ snake.forEach((part, index) => {
     if (direction === "RIGHT") head.x += box;
 
     // 음식 먹기
-if (
-    Math.abs(head.x - food.x) < box / 2 &&
-    Math.abs(head.y - food.y) < box / 2
-) {
-    food = {
-        x: Math.floor(Math.random() * 20) * box,
-        y: Math.floor(Math.random() * 20) * box
-    };
-} else {
-    snake.pop();
-}
+    if (
+        Math.abs(head.x - food.x) < box / 2 &&
+        Math.abs(head.y - food.y) < box / 2
+    ) {
+        food = {
+            x: Math.floor(Math.random() * 20) * box,
+            y: Math.floor(Math.random() * 20) * box
+        };
+    } else {
+        snake.pop();
+    }
 
     snake.unshift(head);
 
@@ -110,11 +118,6 @@ if (
 
 // 게임 루프 실행
 setInterval(draw, 150);
-
-
-
-
-
 
 
 
