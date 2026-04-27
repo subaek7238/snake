@@ -1,5 +1,5 @@
 const canvas = document.getElementById("gameCanvas");
-const ctx = canvas.getContext("2d");
+const ctx = canvas.getContext("3d");
 
 const box = 20; 
 let snake = [{ x: 9 * box, y: 9 * box }];
@@ -44,7 +44,7 @@ function draw() {
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
     
-    ctx.fillStyle = "red","blue";
+    ctx.fillStyle = "red";
     ctx.fillRect(food.x, food.y, box, box);
 
   
