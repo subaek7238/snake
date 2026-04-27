@@ -44,7 +44,7 @@ function draw() {
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
     
-    ctx.fillStyle = "red,blue";
+    ctx.fillStyle = "red","blue";
     ctx.fillRect(food.x, food.y, box, box);
 
   
