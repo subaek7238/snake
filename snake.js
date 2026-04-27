@@ -1,5 +1,5 @@
 const canvas = document.getElementById("gameCanvas");
-const ctx = canvas.getContext("3d");
+const ctx = canvas.getContext("2d");
 
 const box = 20; 
 let snake = [{ x: 9 * box, y: 9 * box }];
